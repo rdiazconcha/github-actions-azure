@@ -37,8 +37,7 @@ jobs:
           registry: gaacr
           repository: therepo
           image: image
-          folder: src/docker
-          dockerfile: ../../dockerfiles/Dockerfile
+          dockerfile: ECommerce.Api.Customers/Dockerfile
           branch: main   
 
   deploy:

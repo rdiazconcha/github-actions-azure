@@ -23,6 +23,23 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: gaacr
+          repository: therepo
+          image: image
+          folder: src/docker
+          dockerfile: ../../dockerfiles/Dockerfile
+          branch: main   
 
   deploy:
     runs-on: ubuntu-latest
